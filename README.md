@@ -2,7 +2,7 @@
 
 #### Description
 
-Feature toggle is responsible for `switching service injection depending on configuration`.
+Feature toggle is responsible for `switching service injection depending on configuration`.  
 Allowing to modify system behavior without changing code.
  
 
@@ -45,7 +45,7 @@ but anywhere else we want to store them on amazon.
     {
         public function store(string $pictureName, string $content)
         {
-            // send it amazon
+            // save it locally
         }
     }
  
@@ -92,9 +92,9 @@ We can make use of our storage now.
  
 `@DI\Tag(name="toggle", attributes={"for"="picture_storage", "on"="amazon_storage", "when"="disabled"})`
 
-* `name="toggle"` - Marks service `to be used` of FeatureToggleBundle
-* `"for"="picture_storage"` - For which service alias, it should be take under consideration
-* `"on"="amazon_storage"` - Parameter name, that will be used for choose decision
-* `"when"="disabled"` - On what parameter value it should be picked
+* `name="toggle"` - Marks service `to be used` by FeatureToggleBundle
+* `"for"="picture_storage"` - Which service alias will replaced
+* `"on"="amazon_storage"` - Parameter name, that will be used for deciding, which one to inject
+* `"when"="disabled"` - On what parameter value service containing this tag should be picked
 
 So service that contains above tag will be used when `amazon_storage` parameters will be `equal to "disabled"`
